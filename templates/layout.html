@@ -1,10 +1,25 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>{% block title %}{% endblock %} - Alex and Leo's Wedding</title>
+        <title>{{ title }} - Alex and Leo's Wedding</title>
+        <script src="/js/modernizr-latest.js"></script>
         {% block js %} {% endblock %}
         {% block css %} {% endblock %}
     </head>
     <body>
+        <header>
+        </header>
+        <nav>
+        <ul>
+            {% for path, link in navlinks %}
+            <li class="{% if request.path == path %}active{% endif %}"><a href="{{path}}">{{link}}</a></li>
+            {% endfor %}
+        </ul>
+        </nav>
+        <section id="content">
+            {%block content%} {% endblock %}
+        </section>
+        <footer>
+        </footer>
     </body>
 </html>
