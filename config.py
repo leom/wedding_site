@@ -1,2 +1,9 @@
 import os
-DB_URI = os.environ.get('DATABASE_URI', 'postgresql://localhost/weddingsite')
+import configparser
+
+class Config(object):
+    config = configparser.ConfigParser()
+    config.read('alembic.ini')
+    DB_URI = conf['alembic']['sqlalchemy.url']
+    DEBUG = bool(os.environ.get('FLASK_DEBUG', 'True'))
+    TESTING = bool(os.environ.get('FLASK_TESTING', 'True'))

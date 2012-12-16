@@ -1,14 +1,27 @@
 import os
+import app_util
 from flask import Flask, render_template, request
 from model import db, app, Song
+from werkzeug import secure_filename
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/music')
+@app.route('/music', methods=['GET', 'POST'])
 def music():
-    return render_template('music.html')
+    if request.method == 'POST':
+        fp = request.files['file']
+        if fp and app_util.allowed_file(fp.filename):
+            filename = secure_filename(fp.filename)
+            fp.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file', filename=filename)
+    else:
+        return render_template('music.html')
+
+@app.route('/music/play/<filename>')
+def play_song(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 @app.context_processor
 def navlinks():
@@ -30,5 +43,5 @@ def title():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.debug = bool(os.environ.get('FLASK_DEBUG', 'False'))
+    app.config['UPLOAD_FOLDER'] = os.path.abspath(os.path.join(app.root_path, 'playme'))
     app.run(host='0.0.0.0')
-

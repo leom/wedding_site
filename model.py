@@ -4,7 +4,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.types import Integer, Boolean, String, DateTime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] =  config.DB_URI
+app.config.from_object('config.Config')
 db = SQLAlchemy(app)
 
 class Song(db.Model):
