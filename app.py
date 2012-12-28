@@ -1,6 +1,6 @@
 import os
 from app_util import *
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, redirect, url_for
 from model import db, app, Song
 from werkzeug import secure_filename
 
@@ -8,32 +8,40 @@ from werkzeug import secure_filename
 def index():
     return render_template('index.html')
 
-@app.route('/music', methods=['GET', 'POST'])
-def music():
+@app.route('/music/add', methods=['GET', 'POST'])
+def add_music():
     if request.method == 'POST':
-        fp = request.files['file']
-        if fp and allowed_file(fp.filename):
-            filename = secure_filename(fp.filename)
-            fp.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file', filename=filename))
-    else:
-        return render_template('music.html')
+        fp = request.files['media_file']
+        if fp:
+            if allowed_file(fp.filename):
+                filename = secure_filename(fp.filename)
+                fp.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                flash('Song successfully saved!', 'success')
+            else:
+                err = '%s and %s' % (', '.join(ALLOWED_EXTENSIONS[:-1]), ALLOWED_EXTENSIONS[-1])
+                flash(err, 'error')
+
+    return render_template('add_music.html')
+
+@app.route('/music')
+def music():
+    return render_template('music.html')
 
 @app.route('/music/play/<filename>')
-def play_song(filename):
+def play_music(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 @app.context_processor
 def navlinks():
     return dict(navlinks=[
         ('/', 'Home'),
-        ('/venue', 'Venue & Directions'),
+        ('/venue', 'Venue & directions'),
         ('/accommodate', 'Accommodations'),
-        ('/rsvp', 'RSVP Details'),
+        ('/rsvp', 'RSVP details'),
         ('/london', 'London'),
-        ('/music', 'The Playlist'),
+        ('/music', 'The playlist'),
         ('/registry', 'Registry'),
-        ('/contact', 'Contact Us')
+        ('/contact', 'Contact us')
     ])
 
 @app.context_processor

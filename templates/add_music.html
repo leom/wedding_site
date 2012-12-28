@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %} 
+<p>Upload a song or send a link to a youtube song here</p>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>{% for category, msg in messages %}
+        <li class="{{category}}">{{msg}}</li>
+    {% endfor %}</ul>
+    {% endif %}
+{% endwith %}
+<form enctype="multipart/form-data" method="post" action="{{ url_for('.music') }}">
+    <label for="youtube">YouTube link</label>
+    <input type="text" name="youtube"><br>
+    - or -<br>
+    <label for="media_file">Music file</label>
+    <input type="file" name="media_file"><br>
+    <label for="submitter">Your name:</label> 
+    <input type="text" name="submitter"><br>
+    <input type="submit" >
+</form>
+{% endblock %}

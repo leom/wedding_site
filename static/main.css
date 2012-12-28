@@ -1,0 +1,16 @@
+nav ul { 
+    margin: 0;
+    padding: 0;
+}
+nav ul li {
+   list-style-type: none;
+   float: left;
+}
+nav a {
+    display: block;
+    padding: 0 15px;
+    margin-right: 2px;
+}
+#content {
+    clear: both;
+}
