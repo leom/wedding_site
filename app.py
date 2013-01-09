@@ -9,7 +9,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/music/add', methods=['GET', 'POST'])
-def add_music():
+def music_add():
     if request.method == 'POST':
         fp = request.files['media_file']
         if fp:
@@ -39,7 +39,7 @@ def navlinks():
         ('/accommodate', 'Accommodations'),
         ('/rsvp', 'RSVP details'),
         ('/london', 'London'),
-        ('/music', 'The playlist'),
+        ('/music/add', 'The playlist'),
         ('/registry', 'Registry'),
         ('/contact', 'Contact us')
     ])

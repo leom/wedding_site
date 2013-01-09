@@ -1,27 +1,40 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
         <title>{{ title }} - Alex and Leo's Wedding</title>
         <script src="{{ url_for('static', filename='modernizr-latest.js')}} "></script>
-        {% block js %} {% endblock %}
+        <link href='//fonts.googleapis.com/css?family=Maven+Pro:900,700,500,400' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
         {% block css %} {% endblock %}
     </head>
     <body>
-        <header>
-        The wedding of Alexandra to Leo
+      <div class="container">
+        <header class="row">
+          The wedding of<br>
+          Alexandra Kate and Leonell Mendoza
         </header>
-        <nav>
-        <ul>
-            {% for path, link in navlinks %}
-            <li class="{% if request.path == path %}active{% endif %}"><a href="{{path}}">{{link}}</a></li>
-            {% endfor %}
-        </ul>
+        <nav class="row">
+          <div class="offset1 span10">
+            <ul>
+                {% for path, link in navlinks %}
+                <li class="{% if request.path == path %}active{% endif %}"><a href="{{path}}">{{link}}</a></li>
+                {% endfor %}
+            </ul>
+          </div>
         </nav>
-        <section id="content">
+        <section id="content" class="row">
+          <div class="span10 offset1">
             {%block content%} {% endblock %}
+          </div>
         </section>
-        <footer>
+        <footer class="row">
+          <div class="span10 offset1">
+          </div>
         </footer>
+        <script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
+        {% block js %} {% endblock %}
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+      </div>
     </body>
 </html>
