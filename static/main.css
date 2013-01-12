@@ -48,5 +48,8 @@ header {
     font-size: 2em;
     line-height: 1em;
     padding-bottom: .25em;
-    text-transform: uppercase;
 }
+header p {
+    margin: 0; padding: 0;
+}
+
