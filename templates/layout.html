@@ -4,6 +4,7 @@
         <title>{{ title }} - Alex and Leo's Wedding</title>
         <script src="{{ url_for('static', filename='modernizr-latest.js')}} "></script>
         <link href='//fonts.googleapis.com/css?family=Maven+Pro:900,700,500,400' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
         {% block css %} {% endblock %}
@@ -12,13 +13,14 @@
       <div class="container">
         <header class="row">
         <p>
-        Alexandra <img src="{{ url_for('static', filename='img/header-heart.png' )}}" style="height:25px"> Leonell
+        Alexandra<span class="heart">&amp;</span>Leonell
         </p>
-        <p class="date-byline" style="font-size: .65em;">
-            Saturday 6th April 2013 at 4.00pm
+        <p class="byline">
+        are engaged to be married!
         </p>
         </header>
         <nav class="row">
+        <!--
           <div class="offset1 span10">
             <ul>
                 {% for path, link in navlinks %}
@@ -26,6 +28,7 @@
                 {% endfor %}
             </ul>
           </div>
+          -->
         </nav>
         <section id="content" class="row">
           <div class="span10 offset1">
