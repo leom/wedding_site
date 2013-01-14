@@ -21,6 +21,10 @@ body {
 .divider {
     border-top: 1px double #C0B28D;
     padding-top: 10px;
+    margin-top: 10px;
+}
+#content .divider:first-child {
+    margin-top: 0;
 }
 h1 {
     color: #C0B28D;
@@ -48,6 +52,11 @@ nav a {
     padding: 0 10px 0 0;
     margin: 0;
 }
+.navItem {
+    border: 1px solid #67896A;
+    height: 200px;
+    margin-bottom: 1em;
+}
 #content {
     clear: both;
 }
@@ -64,7 +73,6 @@ header p {
 .byline {
     font: italic normal .6em/1em 'Gentium Book Basic', 'Times', 'Serif';
 }
-
 .heart {
     background: url(/static/img/header-heart.sml.png) no-repeat 0 5px;
     width: 40px;
@@ -80,6 +88,32 @@ header p {
     padding: 1px;
 }
 #directions {
-    background: url(/static/img/hac-bg.png) no-repeat;
+    /* background: url(/static/img/hac-bg.png) no-repeat; */
     height: 200px;
+}
+#dateTime {
+    /* background: url(/static/img/calendar-bg.png) no-repeat; */
+    height: 200px;
+}
+.navItem a {
+    text-decoration: none;
+    color: #C0B28D;
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 2.75em;
+    font-weight: bold;
+    padding-top: 10px;
+    display: block;
+    height: 190px;
+    width: 100%;
+}
+.navItem a:hover {
+    color: #67896A;
+}
+a#johnLewis {
+    background: url(/static/img/johnlewis-off.png) no-repeat center bottom; 
+    /* background: url(/static/img/johnlewis-on.png) */
+}
+a#london {
+    background: url(/static/img/london-skyline.png) no-repeat left bottom;
 }
