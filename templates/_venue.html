@@ -1,15 +1,26 @@
 <div class="row divider">
     <div class="span5">
-        <a href="http://goo.gl/maps/jSffH"><img id="hacMap" src="http://maps.google.com/maps/api/staticmap?center=51.522918,-0.087533&zoom=16&markers=size:normal%7Ccolor:red%7C51.522918,-0.087533&size=400x200&scale=2&sensor=true"></a>
+        <a href="/venue"><img id="hacPhoto" src="{{url_for('static', filename='img/hac-home-3-border.jpg')}}"></a>
     </div>
     <div id="directions" class="span5">
         <h1>WHERE?</h1>
-        Honourable Artillery Company<br>
-        Armoury House, City Road,<br>
-        London EC1Y 2BQ<br>
-        United Kingdom
-        +44 20 7382 1537<br>
-        <a href="http://hac.org.uk">http://hac.org.uk</a>
-        <a href="/venue" class="more-info" style="text-align: right; display: block;">More info...</a>
+        <div class="row">
+            <div class="span3">
+                Honourable Artillery Company<br>
+                Armoury House, City Road,<br>
+                London EC1Y 2BQ<br>
+                United Kingdom<br>
+                +44 20 7382 1537<br>
+                <a href="http://goo.gl/maps/jSffH"><img src="{{url_for('static', filename='img/map-icon.png')}}" style="width: 20px; vertical-align: text-bottom; height: 20px;">Open in maps</a><br>
+                <a href="http://www.hac.org.uk"><img src="{{url_for('static', filename='img/external-link.png')}}" style="width: 15px; vertical-align: text-bottom; height: 15px; margin-right: 5px">http://hac.org.uk</a>
+            </div>
+            <div class="span1" style="text-align: center; margin-top: .5em;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="span2 offset3">
+                <p style="text-align: right;"><a href="/venue"  class="more-info" >More info...</a></p>
+            </div>
+        </div>
     </div>
 </div>

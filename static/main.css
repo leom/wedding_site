@@ -81,10 +81,9 @@ header p {
     display: inline-block;
     margin: 0 10px;
 }
-#hacMap {
+#hacPhoto {
     width: 400px;
     height: 200px;
-    border: 1px solid black;
     padding: 1px;
 }
 #directions {
