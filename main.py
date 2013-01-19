@@ -8,8 +8,8 @@ from werkzeug import secure_filename
 def index():
     return render_template('index.html')
 
-@app.route('/music/add', methods=['GET', 'POST'])
-def music_add():
+@app.route('/playlist/add', methods=['GET', 'POST'])
+def playlist_add():
     if request.method == 'POST':
         fp = request.files['media_file']
         if fp:
@@ -21,13 +21,13 @@ def music_add():
                 err = '%s and %s' % (', '.join(ALLOWED_EXTENSIONS[:-1]), ALLOWED_EXTENSIONS[-1])
                 flash(err, 'error')
 
-    return render_template('add_music.html')
+    return render_template('playlist/add.html')
 
-@app.route('/music')
-def music():
-    return render_template('music.html')
+@app.route('/playlist')
+def playlist():
+    return render_template('playlist/landing.html')
 
-@app.route('/music/play/<filename>')
+@app.route('/playlist/play/<filename>')
 def play_music(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
@@ -36,27 +36,25 @@ def navlinks():
     return dict(navlinks=[
         ('/', 'Home'),
         ('/venue', 'Venue & directions'),
-        ('/accommodate', 'Accommodations'),
-        ('/rsvp', 'RSVP details'),
-        ('/london', 'London'),
-        ('/music/add', 'The playlist'),
-        ('/registry', 'Registry'),
-        ('/contact', 'Contact us')
+        ('/london', 'London')
     ])
 
 @app.context_processor
 def title():
-    return dict(title=[x[1] for x in navlinks()['navlinks'] if x[0] == request.path][0])
+    titles = {
+        '/': 'Home',
+        '/venue': 'Venue and Directions',
+        '/london': 'London',
+        '/playlist': 'Playlist'
+    }
+    base_path = '/%s' % request.path.rstrip('/').split('/')[0]
+    return dict(title=titles[base_path])
 
 app.add_url_rule('/venue', view_func=RenderTemplateView.as_view('venue_view', template_name='venue.html'))
-app.add_url_rule('/accommodate', view_func=RenderTemplateView.as_view('accommodate_view', template_name='accommodate.html'))
-app.add_url_rule('/rsvp', view_func=RenderTemplateView.as_view('rsvp_view', template_name='rsvp.html'))
 app.add_url_rule('/london', view_func=RenderTemplateView.as_view('london_view', template_name='london.html'))
-app.add_url_rule('/registry', view_func=RenderTemplateView.as_view('registry_view', template_name='registry.html'))
-app.add_url_rule('/contact', view_func=RenderTemplateView.as_view('contact_view', template_name='contact.html'))
 app.debug = bool(os.environ.get('FLASK_DEBUG', 'False'))
 app.config['UPLOAD_FOLDER'] = os.path.abspath(os.path.join(app.root_path, 'playme'))
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0')
+    app.run(host='127.0.0.1')

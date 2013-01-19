@@ -1,3 +1,6 @@
+* {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
 body {
     background-color: #AAD2A2;
 }
@@ -71,8 +74,8 @@ header p {
 }
 .heart {
     background: url(/static/img/header-heart.sml.png) no-repeat 0 5px;
-    width: 40px;
-    height: 45px;
+    width: 49px;
+    height: 50px;
     font-size: .75em;
     display: inline-block;
     margin: 0 10px;
@@ -117,4 +120,22 @@ a#playlist {
 }
 a#rsvp {
     background: url(/static/img/rsvp.png) no-repeat center bottom;
+}
+
+#london-header {
+    background: url(/static/img/london-header.jpg) no-repeat -10px top;
+    height: 265px;
+    position: relative;
+}
+#london-header h1 {
+    color: white;
+}
+.imageCredit {
+    position: absolute;
+    margin: 0 5px 0 0; padding: 0;
+    bottom: 0; 
+    right: 0;
+    font-style: italic;
+    font-size: .85em;
+    font-weight: bold;
 }

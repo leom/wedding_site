@@ -1,6 +1,20 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
 {% block content %}
-    {% include '_when.html' %}
-    {% include '_venue.html' %}
-    {% include '_navigation.html' %}
+    {% include '_/when.html' %}
+    {% include '_/venue.html' %}
+
+    <div class="row divider">
+        <div class="navItem span7">
+            <a id="playlist" href="/playlist">playlist</a>
+        </div>
+        <div class="navItem span3">
+            <a id="rsvp" href="mailto:rsvp@aleox.co.uk?subject=RSVP">rsvp</a>
+        </div>
+        <div class="navItem span4">
+            <a id="weddingList" href="http://www.johnlewis.co.uk">wedding<br>list</a>
+        </div>
+        <div class="navItem span6">
+            <a id="london" href="/london">london</a>
+        </div>
+    </div>
 {% endblock %}
