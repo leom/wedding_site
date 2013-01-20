@@ -126,6 +126,7 @@ a#rsvp {
     background: url(/static/img/london-header.jpg) no-repeat -10px top;
     height: 265px;
     position: relative;
+    margin-bottom: 1em;
 }
 #london-header h1 {
     color: white;
@@ -138,4 +139,15 @@ a#rsvp {
     font-style: italic;
     font-size: .85em;
     font-weight: bold;
+}
+.appIcons h3 {
+    font-height: 1em;
+    margin: 0; padding: 0;
+    line-height: 1em;
+}
+.appIcons .icon {
+    height: 90px;
+}
+.appIcons .desc {
+    height: 90px;
 }
