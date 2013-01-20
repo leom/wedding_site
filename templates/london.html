@@ -1,45 +1,52 @@
 {% extends 'layouts/layout.html' %}
+{% block headernav %}{% include '_/navigation.html' %}{%endblock%}
 {% block content %}
 <div class="row divider">
-    <div id="london-header">
+    <div id="london-header" class="pageHeader">
         <div class="span10">
             <h1>London</h1>
-            <p class="imageCredit"><a href="http://www.freewindows8.org/panoramic-cityscapes.html/panoramic-view-from-victoria-tower-on-houses-of-parliament-and-london-skyline-at-night-london-u-k" title="_link">image source</a></p>
+            <p class="imageCredit"><a href="http://www.freewindows8.org/panoramic-cityscapes.html/panoramic-view-from-victoria-tower-on-houses-of-parliament-and-london-skyline-at-night-london-u-k" target="_link">image source</a></p>
         </div>
     </div>
     <div class="span10">
-        <p>So, London, right? I'll be honest, if you've never been, it's all kinds of rad. There are a million things to do, and there's no lack of information out there around the city. Here are some apps and tips
-        if you're travelling into London, just to make your time a little easier.</p>
-        <p>First things first, if you don't have an international data plan <b>turn off roaming on your phone</b>. There's no lack of <a href="http://www.zdnet.com/uk/free-wi-fi-comes-to-londons-square-mile-7000008951/" title="_link">free WiFi</a> in London (in addition to a Starbucks on every other corner),
-        so roaming is unnecessary. <a href="http://support.apple.com/kb/HT1807?viewlocale=en_US&locale=en_US" title="_link">Turning off roaming on your iPhone</a> is easy, and while I've only used an iPhone, the <a href="http://portables.about.com/od/otherdevices/a/Android-Travel-Tutorial-Using-Wi-Fi-Only-With-3g-4g-Off.htm" title="_link">these Android directions</a> look just as easy.</p>
-        <p>Except Google Maps, none of the following apps require an internet connection (but even Google Maps lets you preload your maps, so as long as you plan ahead you'll be all set).</p>
         <div class="row">
-            <h2>Helpful iPhone Apps</h2>
+            <div class="span10">
+            <p>So, London, right? I'll be honest, if you've never been, it's all kinds of rad. There are a million things to do, and there's no lack of information out there around the city. Here are some apps and tips
+            if you're travelling into London, just to make your time a little easier.</p>
+            <p>First things first, if you don't have an international data plan <b>turn off roaming on your phone</b>. There's no lack of <a href="http://www.zdnet.com/uk/free-wi-fi-comes-to-londons-square-mile-7000008951/" target="_link">free WiFi</a> in London (in addition to a Starbucks on every other corner),
+            so roaming is unnecessary. <a href="http://support.apple.com/kb/HT1807?viewlocale=en_US&locale=en_US" target="_link">Turning off roaming on your iPhone</a> is easy, and while I've only used an iPhone, the <a href="http://portables.about.com/od/otherdevices/a/Android-Travel-Tutorial-Using-Wi-Fi-Only-With-3g-4g-Off.htm" target="_link">these Android directions</a> look just as easy.</p>
+            <p>Except Google Maps, none of the following apps require an internet connection (but even Google Maps lets you preload your maps, so as long as you plan ahead you'll be all set).</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span10">
+                <h2>Helpful iPhone Apps</h2>
+            </div>
         </div>
         <div class="appIcons row">
-            <div class="icon span1"><a href="https://itunes.apple.com/us/app/currency/id284220417?mt=8" title="_link"><img src="{{url_for('static', filename='img/currency-app.jpg')}}"></a></div>
+            <div class="icon span1"><a href="https://itunes.apple.com/us/app/currency/id284220417?mt=8" target="_link"><img src="{{url_for('static', filename='img/currency-app.jpg')}}"></a></div>
             <div class="desc span9">
-                <h3><a href="https://itunes.apple.com/us/app/currency/id284220417?mt=8" title="_link">Currency</a></h3>
+                <h3><a href="https://itunes.apple.com/us/app/currency/id284220417?mt=8" target="_link">Currency</a></h3>
                 As of this writing, the exchange rate is £1 to $1.59, but doing that math in your head can be a bit difficult, so why not use this currency app to do it for you?</dd>
             </div>
         </div>
         <div class="appIcons row">
-            <div class="icon span1"><a href="https://itunes.apple.com/gb/app/london-travel-guide-time-out/id406332146?mt=8" title="_link"><img src="{{ url_for('static', filename='img/timeout-app.jpg') }}"></a></div>
+            <div class="icon span1"><a href="https://itunes.apple.com/gb/app/london-travel-guide-time-out/id406332146?mt=8" target="_link"><img src="{{ url_for('static', filename='img/timeout-app.jpg') }}"></a></div>
             <div class="desc span9">
-                <h3><a href="https://itunes.apple.com/gb/app/london-travel-guide-time-out/id406332146?mt=8" title="_link">TimeOut London</a></h3>
+                <h3><a href="https://itunes.apple.com/gb/app/london-travel-guide-time-out/id406332146?mt=8" target="_link">TimeOut London</a></h3>
                 TimeOut London has a great list of sights to see and things to do all in their app. This alone should be enough, but to top it off it's got a GPS enabled map that doesn't need to use the internet to function. 
                 If (wait - correction - <i>When</i>) you get lost) this is invaluable.</div>
         </div>
         <div class="appIcons row">
-            <div class="icon span1"><a href="https://itunes.apple.com/gb/app/tube-map/id320969612?mt=8" title="_link"><img src="{{url_for('static', filename='img/tubemap-app.jpg')}}"></a></div>
+            <div class="icon span1"><a href="https://itunes.apple.com/gb/app/tube-map/id320969612?mt=8" target="_link"><img src="{{url_for('static', filename='img/tubemap-app.jpg')}}"></a></div>
             <div class="desc span9">
-                <h3><a href="https://itunes.apple.com/gb/app/tube-map/id320969612?mt=8" title="_link">Tube Map</a></h3>
+                <h3><a href="https://itunes.apple.com/gb/app/tube-map/id320969612?mt=8" target="_link">Tube Map</a></h3>
                 The London Underground isn't nearly as confusing as everyone says but even still, having a tube map that will route you from station to station (even allowing for a detour) can be indispensible.</div>
         </div>
         <div class="appIcons row">
-            <div class="icon span1"><a href="https://itunes.apple.com/us/app/google-maps/id585027354?mt=8" title="_link"><img src="{{url_for('static', filename='img/googlemaps-app.jpg')}}"></a></div>
+            <div class="icon span1"><a href="https://itunes.apple.com/us/app/google-maps/id585027354?mt=8" target="_link"><img src="{{url_for('static', filename='img/googlemaps-app.jpg')}}"></a></div>
             <div class="desc span9">
-                <h3><a href="https://itunes.apple.com/us/app/google-maps/id585027354?mt=8" title="_link">Google Maps</a></h3>
+                <h3><a href="https://itunes.apple.com/us/app/google-maps/id585027354?mt=8" target="_link">Google Maps</a></h3>
                 Google Maps is easy the best maps app out there. In addition to preloading your images, the directions and GPS positioning are second to none. Load up the parts of London you're interested in while you're on WiFi, and you'll be set.</p>
             </div>
         </div>

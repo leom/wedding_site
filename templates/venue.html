@@ -1,8 +1,30 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
+{% block headernav %}{% include '_/navigation.html' %}{%endblock%}
 {% block content %}
+<div class="row divider">
+    <div id="hac-header" class="pageHeader">
+        <div class="span10">
+            <h1>The HAC</h1>
+            <p class="imageCredit"><a href="http://the.hac.org.uk/downloads/WeddingsHAC.pdf" target="_link">image source</a></p>
+        </div>
+    </div>
+    <div class="span10">
+        <div class="row">
+            <div class="span10">
+                <p>Just north of the City of London and near to Old Street and Moorgate stations, the <a href="http://the.hac.org.uk" target="_link">the HAC</a> has been the home of the Honourable Artillery Company since 1735 and is unlike any other place in London; a magnificent Georgian house set in a six acre garden located just a couple of minutes walk from Moorgate.</p>
+                <p><b>Closest tube stations</b><br>
+                Moorgate (walk north up City Rd) or Old Street (Exit 5 - walk south down City Rd) Both tube stations are a 3-4 minute walk to the HAC
+                </p>
+                <p>Free parking on the roads after 1pm for everyone (drivers please note, the HAC is in a London congestion zone).</p>
+            </div>
+        </div>
+    </div>
 <p>
 Armoury House, City Road, London EC1Y 2BQ, United Kingdom
 +44 20 7382 1537 * <a href="http://hac.org.uk">http://hac.org.uk</a>
 </p>
 <a href="https://maps.google.com/maps?q=HAC+Armoury+House&hl=en&ll=51.523244,-0.087376&spn=0.006942,0.0159&cid=7375352663091090403&gl=US&hq=HAC+Armoury+House&t=m&z=16&iwloc=A">map</a>
+</div>
+{% endblock %}
+{% block js %}
 {% endblock %}

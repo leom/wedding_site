@@ -69,6 +69,9 @@ header {
 header p {
     margin: 0; padding: 0;
 }
+header p:first-child {
+    margin-bottom: 5px;
+}
 .byline {
     font: italic normal .6em/1em 'Gentium Book Basic', 'Times', 'Serif';
 }
@@ -122,14 +125,19 @@ a#rsvp {
     background: url(/static/img/rsvp.png) no-repeat center bottom;
 }
 
-#london-header {
-    background: url(/static/img/london-header.jpg) no-repeat -10px top;
+.pageHeader {
     height: 265px;
     position: relative;
     margin-bottom: 1em;
 }
-#london-header h1 {
+.pageHeader h1 {
     color: white;
+}
+#london-header {
+    background: url(/static/img/london-header.jpg) no-repeat -10px top;
+}
+#hac-header {
+    background: url(/static/img/hac-header.jpg) no-repeat -10px top;
 }
 .imageCredit {
     position: absolute;
