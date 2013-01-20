@@ -34,6 +34,9 @@ a {
     color: #C0B28D;
     font-weight: 500;
 }
+a.header:hover {
+    text-decoration: none;
+}
 nav ul { 
     margin: 0 auto;
     padding: 0;
@@ -82,6 +85,12 @@ header p:first-child {
     font-size: .75em;
     display: inline-block;
     margin: 0 10px;
+}
+.smallLink {
+    width: 15px; 
+    vertical-align: text-bottom; 
+    height: 15px; 
+    margin-right: 5px
 }
 #hacPhoto {
     width: 400px;
@@ -148,6 +157,13 @@ a#rsvp {
     font-size: .85em;
     font-weight: bold;
 }
+#hacMap {
+    height: 400px;
+    width: 100%;
+}
+#hacMap img {
+    max-width: none;
+}
 .appIcons h3 {
     font-height: 1em;
     margin: 0; padding: 0;
@@ -158,4 +174,25 @@ a#rsvp {
 }
 .appIcons .desc {
     height: 90px;
+}
+.infoWindow * {
+    margin: 0; padding: 0;
+}
+.location h4 {
+    margin: 0; padding: 0;
+}
+.location {
+    margin-bottom: 1em;
+}
+.mapInfoIcon {
+    margin: 4px 0 4em 0;
+    float: left;
+    width: 40px;
+}
+#locationList {
+    height: 400px;
+    overflow: scroll;
+}
+#hacDetailedInfo {
+    margin-top: 1em;
 }

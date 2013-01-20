@@ -1,5 +1,9 @@
 {% extends 'layouts/layout.html' %}
 {% block headernav %}{% include '_/navigation.html' %}{%endblock%}
+{% block css %}
+<style>
+</style>
+{% endblock %}
 {% block content %}
 <div class="row divider">
     <div id="hac-header" class="pageHeader">
@@ -12,6 +16,104 @@
         <div class="row">
             <div class="span10">
                 <p>Just north of the City of London and near to Old Street and Moorgate stations, the <a href="http://the.hac.org.uk" target="_link">the HAC</a> has been the home of the Honourable Artillery Company since 1735 and is unlike any other place in London; a magnificent Georgian house set in a six acre garden located just a couple of minutes walk from Moorgate.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="span6">
+                <div id="hacMap" ></div>
+            </div>
+            <div class="span4" id="locationList">
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hac-combined.png')}}">
+                    <h4>The Honourable Artillery Company</h4>
+                    City Road, London EC1Y 2BQ<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 44 20 7382 1537 <br>
+                    <a target="_link" href="http://www.hac.org.uk"><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">http://hac.org.uk</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Andaz Hotel</h4>
+                    40 Liverpool Street, London EC2M 7QN<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0207 961 1234<br>
+                    <a target="_link" href="http://london.liverpoolstreet.andaz.hyatt.com/hyatt/hotels-london-liverpoolstreet-andaz/index.jsp" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Montcalm London City</h4> 
+                    52 Chiswell Street, London EC1Y 5SD<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0207 616 0100<br>
+                    <a target="_link" href="http://www.themontcalmlondoncity.co.uk" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Apex Hotels</h4>
+                    No 1 Seething Lane, London EC3N 4AX<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0845 365 0000<br>
+                    <a target="_link" href="http://www.apexhotels.co.uk/en/hotels/london/apex-city-of-london-hotel/" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Crowne Plaza</h4>
+                    100 Shoreditch High Street, London E1 6JQ<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0207 613 9800<br>
+                    <a target="_link" href="http://www.ichotelsgroup.com/crowneplaza/hotels/us/en/london/lonsd/hoteldetail" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>DoubleTree Hilton</h4>
+                    7 Pepys Street, London EC3N 4AF<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0207 709 1000<br>
+                    <a target="_link" href="http://doubletree3.hilton.com/en/hotels/united-kingdom/doubletree-by-hilton-hotel-london-tower-of-london-LONTLDI/index.html" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Hoxton Hotel</h4>
+                    81 Great Eastern Street, London EC2A 3HU<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0207 550 1000<br>
+                    <a target="_link" href="http://www.hoxtonhotels.com" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Malmaison London</h4>
+                    18-21 Charterhouse Square, London EC1M 6AH<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0207 012 3700<br>
+                    <a target="_link" href="http://www.malmaison.com/locations/london/" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Travelodge City Road</h4>
+                    1-23 City Road, London EC1Y 1AE<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0871 984 6333<br>
+                    <a target="_link" href="http://www.travelodge.co.uk/hotels/340/London-Central-City-Road-prev-Moorgate-hotel" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+                <div class="location">
+                    <img class="mapInfoIcon" src="{{url_for('static', filename='img/gmap-markers/hotel-combined.png')}}">
+                    <h4>Premier Inn</h4>
+                    Corsham Street, London, N1 6DR<br>
+                    <img src="{{url_for('static', filename='img/phone-icon.png')}}"> 0871 527 9312<br>
+                    <a target="_link" href="http://www.premierinn.com/en/hotel/LONOLD/london-city-old-street" ><img src="{{url_for('static', filename='img/external-link.png')}}" class="smallLink">Hotel Website</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="hacDetailedInfo" class="row">
+            <div class="span10">
+                The HAC strongly encourages the use of public transport in order to minimise the environmental impact of events. You should note that we are in the London congestion zone http://www.tfl.gov.uk/roadusers/congestioncharging/
+                Cycle hire
+                Barclays cycle hire is an excellent initiative for getting around London quickly. Cycles can be collected and returned at any of the cycle hire sites in London. The closest sites to the HAC are at Finsbury Square and Old Street both of which are a 2 minute walk away. For more information visit www.tfl.gov.uk/roadusers/cycling/15150.aspx
+                Plan your journey at www.cyclejourneyplanner.tfl.gov.uk
+                Closest tube Stations: 
+                Moorgate (walk north up City Rd) or Old Street (Exit 5 - walk south down City Rd) Both tube stations are a 3-4 minute walk to the HAC
+                Closest main Line Stations:
+                Liverpool Street (approximately a 10 minute walk) 
+                Moorgate (approx 5 minute walk) 
+                Our property frontage on City Road has a “castle” appearance and is situated directly next to 32-36 City Road and opposite the new Travelodge.
+                Buses
+                A number of bus routes operate along City Road. To help plan your journey on public transport click here to visit the Transport for London website
+                Car parks:
+                If you really do need to drive there is an NCP carpark at Finsbury Square almost opposite the HAC.  Please note that we do not provide parking at the HAC other than for pre booked disabled badge holders.
+
                 <p><b>Closest tube stations</b><br>
                 Moorgate (walk north up City Rd) or Old Street (Exit 5 - walk south down City Rd) Both tube stations are a 3-4 minute walk to the HAC
                 </p>
@@ -19,12 +121,79 @@
             </div>
         </div>
     </div>
-<p>
-Armoury House, City Road, London EC1Y 2BQ, United Kingdom
-+44 20 7382 1537 * <a href="http://hac.org.uk">http://hac.org.uk</a>
-</p>
-<a href="https://maps.google.com/maps?q=HAC+Armoury+House&hl=en&ll=51.523244,-0.087376&spn=0.006942,0.0159&cid=7375352663091090403&gl=US&hq=HAC+Armoury+House&t=m&z=16&iwloc=A">map</a>
 </div>
-{% endblock %}
-{% block js %}
+{% endblock %}{% block js %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMnXekcm-KUO8GgX5nTABGVpAsN0FpmH8&sensor=true"></script>
+<script type="text/javascript" src="{{url_for('static', filename="gmap-markers.js")}}"></script>
+<script type="text/javascript">
+var markers = {};
+var infoWindow;
+$(function(){
+    var mapCoords = new google.maps.LatLng(51.519919, -0.087349);
+    var mainMap = new google.maps.Map(document.getElementById("hacMap"), {
+      center: mapCoords,
+      zoom: 14,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var hacCoords = new google.maps.LatLng(51.522680, -0.087349);
+    var hacMarker = new google.maps.Marker({
+        position: hacCoords,
+        map: mainMap,
+        title: 'HAC',
+        icon: hacMarkerImg,
+        shadow: hacMarkerShadow,
+        shape: hacMarkerShape,
+        zIndex: google.maps.Marker.MAX_ZINDEX + 1
+    });
+    markers['The Honourable Artillery Company'] = hacMarker;
+    var hacContent = '<div class="infoWindow"><h5>The Honourable Artillery Company</h5><p>Armoury House, City Road,<br>London EC1Y 2BQ, United Kingdom<br>+44 20 7382 1537<br><a href="http://hac.org.uk">http://hac.org.uk</a></p></div>';
+    google.maps.event.addListener(hacMarker, 'click', function() { 
+        if(infoWindow) { infoWindow.close(); }
+        infoWindow = new google.maps.InfoWindow({content: hacContent })
+        infoWindow.open(mainMap, hacMarker); 
+    });
+
+    var hotels = [
+        { coords: [51.517169, -0.081518], name: 'Andaz Hotel', address: '40 Liverpool Street<br>London EC2M 7QN', url: 'http://london.liverpoolstreet.andaz.hyatt.com/hyatt/hotels-london-liverpoolstreet-andaz/index.jsp', phone: '0207 961 1234'},
+        { coords: [51.520779, -0.090923], name: 'Montcalm London City', address: '52 Chiswell Street<br>London EC1Y 5SD', url: 'http://www.themontcalmlondoncity.co.uk', phone: '0207 616 0100'},
+        { coords: [51.510582, -0.079320], name: 'Apex Hotels', address: 'No 1 Seething Lane<br>London EC3N 4AX', url: 'http://www.apexhotels.co.uk/en/hotels/london/apex-city-of-london-hotel/', phone: '0845 365 0000'},
+        { coords: [51.525744, -0.077237], name: 'Crowne Plaza', address: '100 Shoreditch High Street<br>London E1 6JQ', url: 'http://www.ichotelsgroup.com/crowneplaza/hotels/us/en/london/lonsd/hoteldetail', phone: '0207 613 9800'},
+        { coords: [51.510743, -0.078151], name: 'DoubleTree Hilton', address: '7 Pepys Street<br>London EC3N 4AF', url: 'http://doubletree3.hilton.com/en/hotels/united-kingdom/doubletree-by-hilton-hotel-london-tower-of-london-LONTLDI/index.html', phone: '0207 709 1000'},
+        { coords: [51.525316, -0.083373], name: 'Hoxton Hotel', address: '81 Great Eastern Street<br>London EC2A 3HU', url: 'http://www.hoxtonhotels.com', phone: '0207 550 1000' },
+        { coords: [51.520264, -0.099519], name: 'Malmaison London', address: '18-21 Charterhouse Square<br>London EC1M 6AH', url: 'http://www.malmaison.com/locations/london/', phone: '0207 012 3700' },
+        { coords: [51.522444, -0.087188], name: 'Travelodge City Road', address: '1-23 City Road<br>London EC1Y 1AE', url: 'http://www.travelodge.co.uk/hotels/340/London-Central-City-Road-prev-Moorgate-hotel', phone: '0871 984 6333' },
+        { coords: [51.527634, -0.087108], name: 'Premier Inn', address: 'Corsham Street<br>London, N1 6DR', url: 'http://www.premierinn.com/en/hotel/LONOLD/london-city-old-street', phone: '0871 527 9312' }
+    ];
+
+    $.each(hotels, function(idx, hotel) {
+      var coords = new google.maps.LatLng(hotel.coords[0], hotel.coords[1]);
+      var hotelMarker = new google.maps.Marker({ 
+        position: coords, 
+        map: mainMap, 
+        title: hotel.name, 
+        icon: hotelMarkerImg,
+        shadow: hotelMarkerShadow,
+        shape: hotelMarkerShape
+      });
+
+      markers[hotel.name] = hotelMarker;
+      var content = '<div class="infoWindow"><h5>'+hotel.name+'</h5>';
+      content += hotel.address + '<br>' + hotel.phone + '<br><a href="'+hotel.url+'" target="_link">Hotel Website</a></div>';
+      google.maps.event.addListener(hotelMarker, 'click', function() { 
+          if(infoWindow) { infoWindow.close(); }
+          infoWindow = new google.maps.InfoWindow({content: content});
+          infoWindow.open(mainMap, hotelMarker); 
+      });
+    });
+
+    $('.location').click(function() {
+      if(infoWindow){ infoWindow.close(); }
+      var key = $(this).find('h4').text();
+      google.maps.event.trigger(markers[key], 'click');
+    });
+
+    $('.location').mouseover(function(){ $(this).css('backgroundColor', '#FFFFF3');});
+    $('.location').mouseout(function(){ $(this).css('backgroundColor', '#FFF');});
+});
+</script>
 {% endblock %}
