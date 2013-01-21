@@ -24,11 +24,11 @@ def upgrade():
         sa.Column('submitter', sa.Unicode(255)),
         sa.Column('created', sa.DateTime())
     )
-    op.create_unique_constraint('uq_song_name_uri', 'songs', ['name', 'uri'])
+    #op.create_unique_constraint('uq_song_name_uri', 'songs', ['name', 'uri'])
     op.create_index('idx_song_created', 'songs', ['created'])
 
 
 def downgrade():
-    op.drop_constraint('idx_song_created')
+    #op.drop_constraint('idx_song_created')
     op.drop_index('idx_song_created')
     op.drop_table('songs')

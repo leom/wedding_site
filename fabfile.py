@@ -9,7 +9,12 @@ def deploy():
     run('find %s/flask_env -iname "*.pyc" -exec rm {} \;' % env.remote_home)
 
     rsync_project(remote_dir='%s/wedding_site' % remote_dir, local_dir='./', delete=True, exclude=['*.pyc', '*.ini', '.*', '*.psd', 'passenger_wsgi.py'])
+    run('touch %s/tmp/restart.txt' % remote_dir)
+
+def setup_config():
+    remote_dir = '%s/flask_env' % env.remote_home
     put('alembic.ini', remote_dir)
     put('passenger_wsgi.py', remote_dir)
 
-    run('touch %s/tmp/restart.txt' % remote_dir)
+def migrate():
+    run('source flask_env/bin/activate && cd %s && alembic -c ~/production.ini upgrade head' % remote_dir)
