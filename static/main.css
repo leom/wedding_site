@@ -4,6 +4,9 @@
 body {
     background-color: #AAD2A2;
 }
+body#shadowBox {
+    background-color: #FFF;
+}
 .container {
     margin-top: 2em;
     padding: .5em 0;
@@ -169,11 +172,9 @@ a#rsvp {
     margin: 0; padding: 0;
     line-height: 1em;
 }
+.appIcons .desc, 
 .appIcons .icon {
-    height: 90px;
-}
-.appIcons .desc {
-    height: 90px;
+    margin-bottom: 1em;
 }
 .infoWindow * {
     margin: 0; padding: 0;

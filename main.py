@@ -45,13 +45,16 @@ def title():
         '/': 'Home',
         '/venue': 'Venue and Directions',
         '/london': 'London',
-        '/playlist': 'Playlist'
+        '/playlist': 'Playlist',
+        '/wedding_list': 'Wedding List'
     }
-    base_path = '/%s' % request.path.rstrip('/').split('/')[0]
+    base_path = '/%s' % request.path.lstrip('/').split('/')[0]
+    print base_path
     return dict(title=titles[base_path])
 
 app.add_url_rule('/venue', view_func=RenderTemplateView.as_view('venue_view', template_name='venue.html'))
 app.add_url_rule('/london', view_func=RenderTemplateView.as_view('london_view', template_name='london.html'))
+app.add_url_rule('/wedding_list', view_func=RenderTemplateView.as_view('wedding_list_view', template_name='wedding_list.html'));
 app.debug = bool(os.environ.get('FLASK_DEBUG', 'False'))
 app.config['UPLOAD_FOLDER'] = os.path.abspath(os.path.join(app.root_path, 'playme'))
 
