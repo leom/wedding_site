@@ -1,6 +1,6 @@
 from flask import render_template
 from flask.views import View
-ALLOWED_EXTENSIONS = set(['mp3', 'mp4', 'wav', 'm4a', 'ogg', 'pdf'])
+ALLOWED_EXTENSIONS = set(['mp3', 'mp4', 'wav', 'm4a', 'ogg'])
 
 def allowed_file(filename):
     global ALLOWED_EXTENSIONS

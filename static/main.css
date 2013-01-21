@@ -151,6 +151,9 @@ a#rsvp {
 #hac-header {
     background: url(/static/img/hac-header.jpg) no-repeat -10px top;
 }
+#playlist-header {
+    background: url(/static/img/playlist-header.jpg) no-repeat -10px top;
+}
 .imageCredit {
     position: absolute;
     margin: 0 5px 0 0; padding: 0;
@@ -199,4 +202,12 @@ a#rsvp {
 }
 .johnLewisLink {
     text-align: center;
+}
+
+.addNewSong {
+    text-align: center;
+}
+a.btn {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: normal;
 }

@@ -1,7 +1,27 @@
 {% extends 'layouts/layout.html' %}
+{% block headernav %}{% include '_/navigation.html' %}{%endblock%}
 {% block content %} 
 <div class="row divider">
-    <p><a href="{{url_for('.playlist_add')}}">Add a song</a></p>
-    <p>List music</p>
+    <div id="playlist-header" class="pageHeader">
+        <div class="span10">
+            <h1>Playlist</h1>
+            <p class="imageCredit"><a href="http://www.youwall.com/index.php?ver=MzI5NA==" target="_link">image credit</a></p>
+        </div>
+    </div>
+    <div class="span10">
+        <div class="row">
+            <div class="span10">
+                <p>In lieu of a traditional dj, we've opted to take care of the music ourselves - and we'd love for you to help. Please let us know
+                what song(s) you'd like to hear at our wedding, and it will be added to our playlist!</p>
+            </div>
+        <div class="row">
+            <div class="span10 addNewSong">
+                <a rel="shadowbox;width=600;height=200" href="/playlist/add" class="btn btn-inverse btn-large"><i class="icon-white icon-plus-sign"></i> Add Your Song!</a>
+            </div>
+        </div>
+
+        <div class="row">
+        </div>
+    </div>
 </div>
 {% endblock %}

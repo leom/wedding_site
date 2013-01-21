@@ -1,21 +1,38 @@
-{% extends 'layout.html' %}
-{% block content %} 
-<p>Upload a song or send a link to a youtube song here</p>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>{% for category, msg in messages %}
-        <li class="{{category}}">{{msg}}</li>
-    {% endfor %}</ul>
-    {% endif %}
-{% endwith %}
-<form enctype="multipart/form-data" method="post" action="{{ url_for('.music') }}">
-    <label for="youtube">YouTube link</label>
-    <input type="text" name="youtube"><br>
-    - or -<br>
-    <label for="media_file">Music file</label>
-    <input type="file" name="media_file"><br>
-    <label for="submitter">Your name:</label> 
-    <input type="text" name="submitter"><br>
-    <input type="submit" >
+{% extends 'layouts/shadowbox.html' %}
+{% block content %}
+<div class="row">
+    <div class="span12">
+    <p>Upload a song or send a link to a youtube song here</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}{% for category, msg in messages %}
+        <div class="alert alert-{{category}}" data-dismiss="alert">{{msg}}</div>
+        {% endfor %}{% endif %}
+    {% endwith %}
+    </div>
+</div>
+<form class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url_for('.playlist_add') }}">
+    <div class="control-group">
+        <label class="control-label" for="submitter">Your name:</label>
+        <div class="controls">
+            <input type="text" name="submitter" placeholder="Your name here">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="youtube">YouTube</label>
+        <div class="controls">
+            <input type="text" name="youtube" placeholder="youtube link">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="media_file">Upload file</label>
+        <div class="controls">
+            <input type="file" name="media_file"><br>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" >
+        </div>
+    </div>
 </form>
 {% endblock %}

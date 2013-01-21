@@ -11,7 +11,7 @@
     <div class="span10">
         <div class="row">
             <div class="span10">
-                <p>Just north of the City of London and near to Old Street and Moorgate stations, the <a href="http://the.hac.org.uk" target="_link">the HAC</a> has been the home of the Honourable Artillery Company since 1735 and is unlike any other place in London; a magnificent Georgian house set in a six acre garden located just a couple of minutes walk from Moorgate.</p>
+                <p>Just north of the City of London and near to Old Street and Moorgate stations, <a href="http://the.hac.org.uk" target="_link">the HAC</a> has been the home of the Honourable Artillery Company since 1735 and is unlike any other place in London; a magnificent Georgian house set in a six acre garden located just a couple of minutes walk from Moorgate.</p>
             </div>
         </div>
 
@@ -143,7 +143,7 @@ $(function(){
         zIndex: google.maps.Marker.MAX_ZINDEX + 1
     });
     markers['The Honourable Artillery Company'] = hacMarker;
-    var hacContent = '<div class="infoWindow"><h5>The Honourable Artillery Company</h5><p>Armoury House, City Road,<br>London EC1Y 2BQ, United Kingdom<br>+44 20 7382 1537<br><a href="http://hac.org.uk">http://hac.org.uk</a></p></div>';
+    var hacContent = '<div class="infoWindow"><h5>The Honourable Artillery Company</h5><p>Armoury House, City Road,<br>London EC1Y 2BQ, United Kingdom<br>44 20 7382 1537<br><a href="http://hac.org.uk">http://hac.org.uk</a></p></div>';
     google.maps.event.addListener(hacMarker, 'click', function() { 
         if(infoWindow) { infoWindow.close(); }
         infoWindow = new google.maps.InfoWindow({content: hacContent })
