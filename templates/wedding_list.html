@@ -10,17 +10,23 @@
     </head>
     <body id="shadowBox">
         <div class="container">
-            <h1>Wedding List</h1>
-            <p>The best gift anyone could give is celebrating with us on our special day.</p>
+            <div class="span12">
+                <h1>Wedding List</h1>
+                <p>The best gift anyone could give is celebrating with us on our special day.</p>
 
-            <p>However, we know that some would like to give us a gift to commemorate our wedding and we would be grateful for anything received. However, we do know that some of you would appreciate some ideas and for this reason we have set up a small wedding list with John Lewis.</p>
+                <p>However, we know that some would like to give us a gift to commemorate our wedding and we would be grateful for anything received. However, we do know that some of you would appreciate some ideas and for this reason we have set up a small wedding list with John Lewis.</p>
 
-            <p>Items from the gift list can be purchased online, which will be delivered to us after the ceremony. If you prefer to have an item to wrap and decorate everything can also be bought in store - just quote the gift ID (xxx).</p>
-
-            <p>Please visit <a href="http://www.johnlewisgiftlist.com">our wedding list at John Lewis</a> (id: xxx) for more information.</p>
+                <p>Items from the gift list can be purchased online, which will be delivered to us after the ceremony. If you prefer to have an item to wrap and decorate items can also be purchased in store; we ask you please quote gift ID #538988 when doing so.</p>
+            </div>
+            <div class="span12 johnLewisLink">
+                <form method="post" action="https://www.johnlewisgiftlist.com/giftint/guestpassword" target="_link">
+                    <input type="hidden" name="giftListNumber" value="538988">
+                    <input type="hidden" name="guestPassword" value="" >
+                    <input type="submit" class="btn" value="Visit our list on the John Lewis website" id="weddingList">
+                </form>
+            </div>
         </div>
     </body>
 </html>
 <script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-
