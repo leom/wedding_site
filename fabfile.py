@@ -8,7 +8,7 @@ def deploy():
     run('source flask_env/bin/activate && pip install -r %s/wedding_site/requirements.txt' % remote_dir)
     run('find %s/flask_env -iname "*.pyc" -exec rm {} \;' % env.remote_home)
 
-    rsync_project(remote_dir='%s/wedding_site' % remote_dir, local_dir='./', delete=True, exclude=['*.pyc', '*.ini', '.*', '*.psd', 'passenger_wsgi.py'])
+    rsync_project(remote_dir='%s/wedding_site' % remote_dir, local_dir='./', delete=True, exclude=['*.pyc', '*.ini', '.*', '*.psd', 'passenger_wsgi.py', 'playme/*', '*.mp3', '*.m4a'])
     run('touch %s/tmp/restart.txt' % remote_dir)
 
 def setup_config():
