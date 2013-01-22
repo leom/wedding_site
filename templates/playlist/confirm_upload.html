@@ -1,0 +1,52 @@
+{% extends 'layouts/shadowbox.html' %}
+{% block content %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+<div class="row">
+    <div class="span12">
+        {% for category, msg in messages %}
+        <div class="close alert alert-{{category}}" data-dismiss="alert">{{msg}}</div>
+        {% endfor %}
+    </div>
+</div>
+    {% endif %}
+{% endwith %}
+
+<div class="row">
+    <div class="span12">
+        <h3>Confirm Song Information</h3>
+        <p>Did we guess everything right? If not, please make your changes below before clicking "Confirmed!".</p>
+        <form method="post" action="{{ url_for('.playlist_add_confirmed') }}">
+            <div class="row confirmSubmitter">
+                <div class="span2">
+                    <label for="submitter">Submitted by:</label>
+                </div>
+                <div class="span10">
+                    <input type="text" name="submitter" class="input-small" value="{{submitter}}">
+                </div>
+            </div>
+            {% if filepath %}
+            <input type="hidden" name="filepath" value="{{filepath}}">
+            {% else %}
+            <input type="hidden" name="youtube_link" value="{{youtube_link}}">
+            {% endif %}
+            <div class="row">
+                <div class="span2">Song information:</div>
+                <div class="span10">
+                    <div class="controls-row">
+                        <input type="text" class="span3" name="name" value="{{name}}" {%if not name%}placeholder="Song Title"{%endif%}>
+                        <input type="text" class="span3" name="album" value="{{album}}" {%if not album%}placeholder="Album"{%endif%}>
+                        <input type="text" class="span3" name="artist" value="{{artist}}" {%if not artist%}placeholder="Artist"{%endif%}>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span10 offset2">
+                    <input type="submit" class="btn btn-success" value="Confirmed!">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

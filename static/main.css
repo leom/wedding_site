@@ -28,7 +28,7 @@ body#shadowBox {
 #content .divider:first-child {
     margin-top: 0;
 }
-h1 {
+h1, h2, h3 {
     color: #C0B28D;
     text-transform: uppercase;
     margin: 0;

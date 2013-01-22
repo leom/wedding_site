@@ -1,0 +1,14 @@
+{% extends 'layouts/shadowbox.html' %}
+{% block content %}
+<div class="row">
+    <div class="span12">
+        <div class="close alert alert-{{category}}" data-dismiss="alert">New song added!</div>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <h3>Song added!</h3>
+        <p>Thank you for adding "{{name}}"! We're going to add the song to our playlist, and hopefully you'll hear it on the 6th of April.</p>
+    </div>
+</div>
+{%endblock%}

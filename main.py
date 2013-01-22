@@ -5,7 +5,7 @@ from app_util import *
 from random import randint
 from hsaudiotag import auto
 from flask import Flask, render_template, request, flash, redirect, url_for
-from model import db, app, Song
+from model import db, app, Song, Artist, Album
 from werkzeug import secure_filename
 
 @app.route('/')
@@ -19,25 +19,59 @@ def playlist_add():
         if fp:
             if allowed_file(fp.filename):
                 filename = secure_filename('%d-%s.%s' % (time.time(), randint(1000, 999999), fp.filename))
-                fp.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                fp.save(filepath)
 
-                flash('Song successfully saved!', 'success')
+                # saved file, now try to get the uploaded info
+                audio_file = auto.File(filepath)
+
+                # TODO: confirm song isn't already in the DB first
+                return render_template('playlist/confirm_upload.html',
+                        filepath=filepath,
+                        name=audio_file.title,
+                        album=audio_file.album,
+                        artist=audio_file.artist,
+                        submitter=request.form['submitter']
+                )
             else:
                 err = '%s and %s' % (', '.join(ALLOWED_EXTENSIONS[:-1]), ALLOWED_EXTENSIONS[-1])
                 flash(err, 'error')
-
     return render_template('playlist/add.html')
 
-@app.route('/playlist/confirm_upload/<b64filename>')
-def playlist_confirm_upload(b64filename):
-    filename = base64.b64decode(b64filename)
-    audio_file = auto.File(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    return render_template('playlist/confirm_upload.html', audio_file=audio_file)
+@app.route('/playlist/add/confirmed', methods=['POST'])
+def playlist_add_confirmed():
+    artist = Artist.query.filter_by(name=request.form['artist']).first()
+    if artist is None:
+        artist = Artist(name=request.form['artist'])
+
+    album = Album.query.filter_by(artist_id=artist.id, name=request.form['album']).first()
+    if album is None:
+        album = Album(name=request.form['album'])
+
+    try:
+        uri = request.form['filepath']
+        is_uploaded = False
+    except KeyError:
+        uri = request.form['youtube_link']
+        is_uploaded = True
+
+    s = Song.query.filter_by(uri=uri, album_id=album.id).first()
+    if s is None:
+        album.songs.append(Song(uri,
+            request.form['name'],
+            is_uploaded=is_uploaded,
+            submitter=request.form['submitter']))
+        artist.albums.append(album)
+        db.session.add(artist)
+        db.session.commit()
+
+    return render_template('playlist/add_confirmed.html', name=request.form['name'])
 
 
 @app.route('/playlist')
 def playlist():
-    return render_template('playlist/landing.html')
+    artists = Artist.query.all()
+    return render_template('playlist/landing.html', artists=artists)
 
 @app.route('/playlist/play/<filename>')
 def play_music(filename):

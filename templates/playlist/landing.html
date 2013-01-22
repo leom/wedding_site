@@ -16,11 +16,21 @@
             </div>
         <div class="row">
             <div class="span10 addNewSong">
-                <a rel="shadowbox;width=600;height=200" href="/playlist/add" class="btn btn-inverse btn-large"><i class="icon-white icon-plus-sign"></i> Add Your Song!</a>
+                <a rel="shadowbox;width=600;height=400" href="/playlist/add" class="btn btn-inverse btn-large"><i class="icon-white icon-plus-sign"></i> Add Your Song!</a>
             </div>
         </div>
 
         <div class="row">
+            {% for artist in artists %}
+            <hr>
+            - {{artist.name}}<br>
+                {% for album in artist.albums %}
+                    -- {{album.name}}<br>
+                    {% for song in album.songs %}
+                    --- {{ song.name }}
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </div>
