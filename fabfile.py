@@ -5,9 +5,10 @@ from fabric.contrib.console import confirm
 
 def deploy():
     remote_dir = '%s/flask_env' % env.remote_home
-    run('find %s/flask_env -iname "*.pyc" -exec rm {} \;' % env.remote_home)
     rsync_project(remote_dir='%s/wedding_site' % remote_dir, local_dir='./', delete=True, exclude=['*.pyc', '*.ini', '.*', '*.psd', 'passenger_wsgi.py', 'playme/*', '*.mp3', '*.m4a'])
-    run('source flask_env/bin/activate && pip install -r %s/wedding_site/requirements.txt && touch %s/tmp/restart.txt' % (remote_dir, remote_dir))
+    with cd(remote_dir):
+        run('find -iname "*.pyc" -exec rm {} \;')
+        run('source flask_env/bin/activate && pip install -r wedding_site/requirements.txt && touch tmp/restart.txt')
 
 def setup_config():
     remote_dir = '%s/flask_env' % env.remote_home
@@ -15,4 +16,7 @@ def setup_config():
     put('passenger_wsgi.py', remote_dir)
 
 def migrate():
-    run('source flask_env/bin/activate && cd %s && alembic -c ~/production.ini upgrade head' % remote_dir)
+    remote_dir = '%s/flask_env' % env.remote_home
+    with cd(remote_dir):
+        run('source bin/activate && cd wedding_site && alembic -c ~/production.ini upgrade head' )
+        run('touch tmp/restart.txt')
