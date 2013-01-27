@@ -1,4 +1,4 @@
-* {
+y* {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 }
 body {
@@ -210,4 +210,14 @@ a#rsvp {
 a.btn {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: normal;
+}
+.searchLabel {
+    margin: 0 0 1em 0; padding: 0;
+    color: #C0B28D;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.fileUpload {
+    display: none;
 }

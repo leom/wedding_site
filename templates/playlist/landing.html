@@ -14,24 +14,85 @@
                 <p>In lieu of a traditional dj, we've opted to take care of the music ourselves - and we'd love for you to help. Please let us know
                 what song(s) you'd like to hear at our wedding, and it will be added to our playlist!</p>
             </div>
-        <div class="row">
-            <div class="span10 addNewSong">
-                <a rel="shadowbox;width=600;height=400" href="/playlist/add" class="btn btn-inverse btn-large"><i class="icon-white icon-plus-sign"></i> Add Your Song!</a>
-            </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}<div class="row">
+            {% for category, msg in messages %}
+            <div class="close alert alert-{{category}}" data-dismiss="alert">{{msg}}</div>
+            {% endfor %}</div>
+            {% endif %}
+        {% endwith %}
         </div>
-
         <div class="row">
-            {% for artist in artists %}
-            <hr>
-            - {{artist.name}}<br>
-                {% for album in artist.albums %}
-                    -- {{album.name}}<br>
-                    {% for song in album.songs %}
-                    --- {{ song.name }}
-                    {% endfor %}
-                {% endfor %}
-            {% endfor %}
+            <div class="span10 addNewSong divider">
+                <fieldset>
+                    <form class="form-horizontal" enctype="multipart/form-data" method="post" action="{{ url_for('.playlist_add') }}" id="addSong">
+                        <div class="control-group">
+                            <label class="control-label searchLabel" for="songInput">Add your song</label>
+                            <div class="controls">
+                                <div class="input-append">
+                                    <span class="searchBox"><input type="text" class="span6" id="searchText" name="search" placeholder="Type a song title and artist or paste in a YouTube Link"></span>
+                                    <span class="fileUpload"><input class="fileUpload" type="file" id="mediaUpload" name="media_file" disabled="disabled"></span>
+                                    <input type="submit" class="btn" value="Add song">
+                                </div>
+                                <span class="help-block"><span id="userDirection"></span>
+                                    (Alternatively, <a href="#" id="toggleInput">click here</a> to <span id="userAction">upload a song in your collection</a></span>.)
+                                </span>
+                            </div>
+                            <div class="controls">
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
         </div>
     </div>
 </div>
+{% endblock %}
+{% block js %}
+<script>
+$(function(){
+    (function() {
+        var directions = [
+            'Please type in a song title and artist to add it to our list or paste in a youtube link and we\'ll do the rest.',
+            'Using the form above, please upload a song from your collection to add it to our playlist'
+        ];
+        var actions = [
+            'upload a song in your collection',
+            'type in a song title and artist or paste in a youtube link'
+        ];
+        $('#userDirection').html(directions[0]);
+        $('#userAction').html(actions[0]);
+        $('#toggleInput').click(function(){
+            if($('#userDirection').html() == directions[0]) {
+                $('#userAction').html(actions[1]);
+                $('#userDirection').html(directions[1]);
+                $('.fileUpload').show();
+                $('.fileUpload').removeAttr('disabled');
+                $('.searchBox').hide();
+                $('.searchBox').attr('disabled', 'disabled');
+            }
+            else {
+                $('#userDirection').html(directions[0]);
+                $('#userAction').html(actions[0]);
+                $('.fileUpload').hide();
+                $('.fileUpload').attr('disabled', 'disabled');
+                $('.searchBox').show();
+                $('.searchBox').removeAttr('disabled');
+            }
+        });
+    })();
+
+    (function() {
+        $('#addSong').submit(function(data) {
+            var searchText = $('#searchText').val().toLowerCase();
+            if(searchText.search('youtube.com') || searchText.search('youtube.co.uk')) {
+
+            }
+            else {
+            }
+            return false;
+        });
+    })();
+});
+</script>
 {% endblock %}
