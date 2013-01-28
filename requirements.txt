@@ -13,6 +13,7 @@ SQLAlchemy==0.7.9
 Tempita==0.5.1
 Werkzeug==0.8.3
 alembic==0.4.1
+autoenv==1.0.0
 bpython==0.12
 decorator==3.4.0
 gdata==2.0.17
