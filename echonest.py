@@ -8,7 +8,11 @@ def get_from_echonest(title=None):
         raise Exception('ECHO_NEST_API_KEY variable cannot be None!')
 
     title = title_scrubber(title)
+    # extend is in case it's an empty string
     title_parts = [t.strip() for t in title.split('-')]
+    if not title_parts or len(title_parts) != 2:
+        return (title, None)
+
     matches = song.search(title=title_parts[0], artist=title_parts[1])
     # try both ways, because we have no idea how people will
     # title the song in youtube

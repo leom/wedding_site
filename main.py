@@ -30,8 +30,6 @@ def playlist_add():
 
                     # saved file, now try to get the uploaded info
                     audio_file = auto.File(filepath)
-                    print audio_file.title, audio_file.artist
-
                     return render_template('playlist/confirm_upload.html',
                             uri=filepath,
                             song_title=audio_file.title,
@@ -67,7 +65,7 @@ def playlist_add():
 
 @app.route('/playlist/add/confirmed', methods=['POST'])
 def playlist_add_confirmed():
-    is_uploaded = yt_re.search(request.form['uri']) == False
+    is_uploaded = yt_re.search(request.form['uri']) is None
 
     # we'll clean up duplicates manually
     song = Song(uri=request.form['uri'], title=request.form['title'], artist=request.form['artist'])
@@ -82,8 +80,7 @@ def playlist_add_confirmed():
 
 @app.route('/playlist')
 def playlist():
-    songs = Song.query.all()
-    print songs
+    songs = Song.query.order_by('title', 'artist').all()
     return render_template('playlist/landing.html', songs=songs)
 
 @app.route('/playlist/play/<filename>')

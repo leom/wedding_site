@@ -73,7 +73,6 @@ def get_from_freebase(topic_ids):
     artist = None
     for tid in topic_ids:
         freebase_url = 'https://www.googleapis.com/freebase/v1/topic%s?%s' % (tid, qry_string)
-        print freebase_url
         freebase_json = urllib.urlopen(freebase_url).read()
 
         freebase_resp = json.loads(freebase_json)
