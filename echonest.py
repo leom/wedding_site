@@ -1,6 +1,7 @@
 import os, re
 from pyechonest import config, song
-config.ECHO_NEST_API_KEY = os.environ.get('ECHO_NEST_API_KEY', None)
+from config import Config as AppConfig
+config.ECHO_NEST_API_KEY = AppConfig.ECHO_NEST_API_KEY
 
 def get_from_echonest(title=None):
     if config.ECHO_NEST_API_KEY is None:

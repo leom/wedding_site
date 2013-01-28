@@ -8,9 +8,10 @@ import re
 import sys
 import urllib
 import gdata.youtube.service
+from config import Config as AppConfig
 from echonest import get_from_echonest
 
-API_KEY = os.environ.get('GOOGLE_API_KEY', None)
+API_KEY = AppConfig.GOOGLE_API_KEY
 
 def get_video_id(value):
     """

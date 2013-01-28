@@ -12,15 +12,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from model import db, app, Song
 from werkzeug import secure_filename
 
-# uber hacky and does unnecessary i/o. Fix with a custom python file
-# for the env when possible
-if os.path.exists(os.path.join(os.environ['HOME'], 'env_vars.json')):
-    import json
-    env_file = open(os.path.join(os.environ['HOME'], 'env_vars.json'), 'r').read()
-    env_vars = json.loads(env_file)
-    for var, value in env_vars.items():
-        os.environ[var] = value
-
 yt_re = re.compile('youtube.co(m|\.uk)')
 @app.route('/')
 def index():
@@ -125,7 +116,7 @@ app.add_url_rule('/wedding_list', view_func=RenderTemplateView.as_view('wedding_
 app.config['UPLOAD_FOLDER'] = os.path.abspath(os.path.join(app.root_path, 'playme'))
 
 app.secret_key = os.environ.get('FLASK_SECRET_KEY', '4FWlbReDt9AYliu2ys6bGYnuhO+DLl4zH3edeEJD6bU=')
-app.debug = os.environ.get('FLASK_DEBUG', 'False') == 'True'
+app.debug = app.config['DEBUG']
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
