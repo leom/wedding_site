@@ -104,6 +104,12 @@ header p:first-child {
     height: 200px;
     padding: 1px;
 }
+a.hotelInfo {
+    font-size: 1.5em;
+    line-height: .85em;
+    color: #C0B28D;
+    font-weight: bold;
+}
 #directions {
     /* background: url(/static/img/hac-bg.png) no-repeat; */
     height: 200px;
@@ -125,7 +131,7 @@ header p:first-child {
     height: 190px;
     width: 100%;
 }
-.navItem a:hover {
+a:hover {
     color: #67896A;
 }
 a#london {
@@ -192,12 +198,17 @@ a#rsvp {
 .location {
     margin-bottom: 1em;
 }
+.locationBig {
+    float: left;
+    width: 253px;
+    height: 100px;
+}
 .mapInfoIcon {
     margin: 4px 0 4em 0;
     float: left;
     width: 40px;
 }
-#locationList {
+.listShort {
     height: 400px;
     overflow: scroll;
 }
@@ -233,4 +244,15 @@ a.btn {
 }
 .editable, .editable form, .editable input {
     display: inline;
+}
+
+/* bootstrap override */
+.active a#showMap:hover,
+.active a#hideMap:hover {
+    color: #fff;
+}
+.active #showMap,
+.active #hideMap {
+    background-color: #67896A;
+    color: #fff;
 }
