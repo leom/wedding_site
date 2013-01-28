@@ -8,10 +8,9 @@ import re
 import sys
 import urllib
 import gdata.youtube.service
-from pyechonest import config, song
+from echonest import get_from_echonest
 
 API_KEY = os.environ.get('GOOGLE_API_KEY', None)
-config.ECHO_NEST_API_KEY = os.environ.get('ECHO_NEST_API_KEY', None)
 
 def get_video_id(value):
     """
@@ -64,7 +63,6 @@ def get_video_info(video_id):
             print 'HttpError: ', he
             pass
 
-
     return song_title, artist
 
 def get_from_freebase(topic_ids):
@@ -93,23 +91,6 @@ def get_from_freebase(topic_ids):
             break
     return song_title, artist
 
-def get_from_echonest(title=None, artist=None):
-    if config.ECHO_NEST_API_KEY is None:
-        raise Exception('ECHO_NEST_API_KEY variable cannot be None!')
-
-    title_parts = [t.strip() for t in title.split('-')]
-    matches = song.search(title=title_parts[0], artist=title_parts[1])
-    # try both ways, because we have no idea how people will
-    # title the song in youtube
-    if not matches:
-        matches = song.search(title=title_parts[1], artist=title_parts[0])
-
-    if not matches:
-        print 'no matches found'
-        return (None, None)
-    else:
-        match = matches[0]
-        return (match.title, match.artist_name)
 
 if __name__ == "__main__":
     url = 'www.youtube.com/watch?v=D9JOxagV9Pw' if len(sys.argv) == 1 else sys.argv[1]

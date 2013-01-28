@@ -14,39 +14,50 @@
 
 <div class="row">
     <div class="span12">
-        <h3>Confirm Song Information</h3>
-        <p>Did we guess everything right? If not, please make your changes below before clicking "Confirmed!".</p>
-        <form method="post" action="{{ url_for('.playlist_add_confirmed') }}">
-            <div class="row confirmSubmitter">
-                <div class="span2">
-                    <label for="submitter">Submitted by:</label>
-                </div>
-                <div class="span10">
-                    <input type="text" name="submitter" class="input-small" value="{{submitter}}">
-                </div>
-            </div>
-            {% if filepath %}
-            <input type="hidden" name="filepath" value="{{filepath}}">
-            {% else %}
-            <input type="hidden" name="youtube_link" value="{{youtube_link}}">
-            {% endif %}
-            <div class="row">
-                <div class="span2">Song information:</div>
-                <div class="span10">
-                    <div class="controls-row">
-                        <input type="text" class="span3" name="name" value="{{name}}" {%if not name%}placeholder="Song Title"{%endif%}>
-                        <input type="text" class="span3" name="album" value="{{album}}" {%if not album%}placeholder="Album"{%endif%}>
-                        <input type="text" class="span3" name="artist" value="{{artist}}" {%if not artist%}placeholder="Artist"{%endif%}>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="span10 offset2">
-                    <input type="submit" class="btn btn-success" value="Confirmed!">
-                </div>
-            </div>
-        </form>
+        <h3>Confirm Song</h3>
+        <p>If we guessed your song info wrong, please click on either the title or the artist to correct the information.
+        Otherwise, just let us know who to thank for the submission, click "Confirmed!", and you're all set!
+        </p>
+    </div>
+    <div class="span12 confirmUpload">
+        <b id="songTitle" class="editable">{{song_title}}</b> by <b id="songArtist" class="editable">{{artist}}</b>
     </div>
 </div>
+<div class="row">
+    <div class="span12">&nbsp;</div>
+</div>
+<div class="row">
+    <form class="form-horizontal" method="post" action="{{ url_for('.playlist_add_confirmed') }}">
+        <div class="control-group">
+            <label class="control-label" for="submitter">Submitted by:</label>
+            <div class="controls">
+                <input type="text" name="submitter" class="input-large" value="{{submitter}}">
+            </div>
+        </div>
+        <input type="hidden" id="hiddenTitle" name="title" value="{{song_title}}">
+        <input type="hidden" id="hiddenArtist" name="artist" value="{{artist}}">
+        <input type="hidden" name="uri" value="{{uri}}">
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn btn-success" value="Confirmed!">
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
+{% block js %}
+<script src="{{url_for('static', filename='jquery.jeditable.mini.js')}}"></script>
+<script>
+$(function() {
+    $('#songTitle').editable(function(value, settings) {
+        $('#hiddenTitle').val(value);
+        return value;
+    }, { onblur: 'submit'});
 
+    $('#songArtist').editable(function(value, settings) {
+        $('#hiddenArtist').val(value);
+        return value;
+    }, { onblur: 'submit'});
+});
+</script>
+{% endblock %}

@@ -1,7 +1,9 @@
 import os
+import re
 import time
 import base64
 import datetime
+from echonest import get_from_echonest
 from youtube import get_video_info, get_video_id
 from app_util import *
 from random import randint
@@ -28,55 +30,60 @@ def playlist_add():
 
                     # saved file, now try to get the uploaded info
                     audio_file = auto.File(filepath)
+                    print audio_file.title, audio_file.artist
 
                     return render_template('playlist/confirm_upload.html',
-                            filepath=filepath,
-                            name=audio_file.title,
+                            uri=filepath,
+                            song_title=audio_file.title,
                             artist=audio_file.artist
                     )
                 else:
                     err = '%s and %s' % (', '.join(ALLOWED_EXTENSIONS[:-1]), ALLOWED_EXTENSIONS[-1])
                     flash(err, 'error')
+                    return
         else:
-            search_term = request.form['searchText']
-
+            search_term = request.form['search']
             is_yt = yt_re.search(search_term)
+            uri = title = artist = None
             if is_yt:
                 video_id = get_video_id(search_term)
                 title, artist = get_video_info(video_id)
-                if title is None:
-                    title = search_term
-                return render_template('playlist/confirm_upload.html',
-                        youtube_uri=search_term,
-                        title=title,
-                        artist=artist
-                )
+            else:
+                title, artist = get_from_echonest(search_term)
+
+            if not title:
+                title = search_term.capitalize()
+
+            if not artist:
+                artist = 'Unknown'
+
+            return render_template('playlist/confirm_upload.html',
+                    uri=search_term,
+                    song_title=title,
+                    artist=artist
+            )
 
     return render_template('playlist/add.html')
 
 @app.route('/playlist/add/confirmed', methods=['POST'])
 def playlist_add_confirmed():
     is_uploaded = yt_re.search(request.form['uri']) == False
-    song = Song.query.filter_by(title=request.form['title'], artist=request.form['artist']).first()
-    if not song:
-        song = Song(title=request.form['title'], artist=request.form['artist'])
-        song.submitter = request.form['submitter']
-        song.uri = request.form['uri']
-        song.is_uploaded = is_uploaded
-        song.created = datetime.datetime.now()
 
-        db.session.add(song)
-        db.session.commit()
-    elif song and is_uploaded:
-        # cleanup the new song, as we've already got in the db
-        os.unlink(request.form['uri'])
+    # we'll clean up duplicates manually
+    song = Song(uri=request.form['uri'], title=request.form['title'], artist=request.form['artist'])
+    song.submitter = request.form['submitter']
+    song.is_uploaded = is_uploaded
+    song.created = datetime.datetime.now()
 
-    return render_template('playlist/add_confirmed.html', title=request.form['name'])
+    db.session.add(song)
+    db.session.commit()
+    return render_template('playlist/add_confirmed.html', song=song)
 
 
 @app.route('/playlist')
 def playlist():
     songs = Song.query.all()
+    print songs
     return render_template('playlist/landing.html', songs=songs)
 
 @app.route('/playlist/play/<filename>')

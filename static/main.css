@@ -1,4 +1,8 @@
-y* {
+/**
+ * I'm so sorry about the layout of this CSS.
+ **/
+
+* {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 }
 body {
@@ -220,4 +224,13 @@ a.btn {
 
 .fileUpload {
     display: none;
+}
+.confirmUpload {
+    text-align: center;
+}
+.confirmUpload b.editable {
+    font-size: 2em;
+}
+.editable, .editable form, .editable input {
+    display: inline;
 }

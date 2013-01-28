@@ -38,11 +38,30 @@
                                     (Alternatively, <a href="#" id="toggleInput">click here</a> to <span id="userAction">upload a song in your collection</a></span>.)
                                 </span>
                             </div>
-                            <div class="controls">
-                            </div>
                         </div>
                     </form>
                 </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span10 ">
+                <h4>Our playlist so far</h4>
+                <p>Thank you to everyone that's submitted a song for our playlist! We've got {{songs|length}} songs and counting. We are going to do everything we can
+                to get every one of these tracks on our wedding playlist.</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Artist</th>
+                        </tr>
+                    </thead>
+                    <tbody>{% for song in songs %}
+                    <tr>
+                        <td>{{song.title}}</td>
+                        <td>{{song.artist}}</td>
+                    </tr>
+                    {% endfor %}</tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -67,32 +86,45 @@ $(function(){
                 $('#userAction').html(actions[1]);
                 $('#userDirection').html(directions[1]);
                 $('.fileUpload').show();
-                $('.fileUpload').removeAttr('disabled');
+                $('#mediaUpload').removeAttr('disabled');
                 $('.searchBox').hide();
-                $('.searchBox').attr('disabled', 'disabled');
+                $('#searchText').attr('disabled', 'disabled');
             }
             else {
                 $('#userDirection').html(directions[0]);
                 $('#userAction').html(actions[0]);
                 $('.fileUpload').hide();
-                $('.fileUpload').attr('disabled', 'disabled');
+                $('#mediaUpload').attr('disabled', 'disabled');
                 $('.searchBox').show();
-                $('.searchBox').removeAttr('disabled');
+                $('#searchText').removeAttr('disabled');
             }
         });
     })();
 
-    (function() {
-        $('#addSong').submit(function(data) {
-            var searchText = $('#searchText').val().toLowerCase();
-            if(searchText.search('youtube.com') || searchText.search('youtube.co.uk')) {
-
-            }
-            else {
-            }
-            return false;
-        });
-    })();
+    $('#addSong').submit(function() {
+        if($('.searchText').val() == '' && $('.mediaUpload').val() == '') {
+            Shadowbox.open({
+                player: 'html',
+                content: '<div style="padding-top: 25%;background-color: #fff; text-align: center; width: 100%; height: 75%"><h4>Please enter in a song before proceeding!</h4></div>'
+            });
+        }
+        else {
+            var me = this;
+            Shadowbox.open({
+                content: 'about: blank',
+                player: 'iframe',
+                height: 500,
+                options: {
+                    onFinish: function() {
+                        console.log('submitting ' + me);
+                        me.submit();
+                    }
+                }
+            });
+            $(this).attr('target', 'sb-player');
+        }
+        return false;
+    });
 });
 </script>
 {% endblock %}
