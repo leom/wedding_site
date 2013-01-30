@@ -164,10 +164,13 @@ $(function(){
         }
     });
 
-    if(window.location.hash) {
+    function hashswitch() {
         $('a[href='+window.location.hash+']').trigger('click');
         $('a[href='+window.location.hash+']').parent().addClass('active')
     }
+
+    if(window.location.hash) { hashswitch(); }
+    $(window).bind('hashchange', hashswitch);
 });
 </script>
 {% endblock %}
