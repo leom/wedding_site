@@ -158,7 +158,9 @@ $(function(){
         if(!isActiveTab(this)) {
             $('.location').removeClass('locationBig');
             $('#locationList').removeClass('span10').addClass('span4 listShort');
-            $('#hacMapContainer').show('slide', { 'direction': 'left'}, 1000);
+            $('#hacMapContainer').show('slide', { 'direction': 'left'}, 1000, function() {
+                google.maps.event.trigger(document.getElementById('hacMap'), 'resize');
+            });
         }
     });
 
