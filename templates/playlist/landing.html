@@ -115,8 +115,10 @@ $(function(){
                 height: 500,
                 options: {
                     onFinish: function() {
-                        console.log('submitting ' + me);
                         me.submit();
+                    },
+                    onClose: function() {
+                        window.top.location.reload()
                     }
                 }
             });

@@ -7,12 +7,7 @@ def get_from_echonest(title=None):
     if config.ECHO_NEST_API_KEY is None:
         raise Exception('ECHO_NEST_API_KEY variable cannot be None!')
 
-    title = title_scrubber(title)
-    # extend is in case it's an empty string
-    title_parts = [t.strip() for t in title.split('-')]
-    if not title_parts or len(title_parts) != 2:
-        return (title, None)
-
+    title_parts = title_splitter(title)
     matches = song.search(title=title_parts[0], artist=title_parts[1])
     # try both ways, because we have no idea how people will
     # title the song in youtube
@@ -25,9 +20,23 @@ def get_from_echonest(title=None):
         match = matches[0]
         return (match.title, match.artist_name)
 
+def title_splitter(title):
+    title = title_scrubber(title)
+    title_parts = [t.strip() for t in title.split('-')]
+    if not title_parts or len(title_parts) != 2:
+        title_parts = (title, None)
+    return title_parts
+
 def title_scrubber(title):
+    if '[video]' in title.lower():
+        vid_re = re.compile('\[\s*Video\s*\]', re.IGNORECASE)
+        title = vid_re.sub('', title)
+
     if '-' in title:
         return title
+
+    if title.count(',') == 1:
+        return title.replace(',', ' - ')
 
     by_idx = title.lower().find(' by ')
     if by_idx != -1:
@@ -40,7 +49,6 @@ def title_scrubber(title):
             return "%s - %s" % (match.group(1), match.group(2))
         else:
             return "%s - %s" % (match.group(3), match.group(2))
-
     # TODO
     # how can i intelligenty switch 'At Last Etta James' with
     # 'Etta James At Last'?

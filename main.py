@@ -3,7 +3,7 @@ import re
 import time
 import base64
 import datetime
-from echonest import get_from_echonest
+from echonest import get_from_echonest, title_splitter
 from youtube import get_video_info, get_video_id
 from app_util import *
 from random import randint
@@ -46,6 +46,8 @@ def playlist_add():
             if is_yt:
                 video_id = get_video_id(search_term)
                 title, artist = get_video_info(video_id)
+                if artist is None:
+                    title, artist = title_splitter(title)
             else:
                 title, artist = get_from_echonest(search_term)
 

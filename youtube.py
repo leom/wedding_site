@@ -46,8 +46,8 @@ def get_video_info(video_id):
     # v2 is just so much more reliable. Try this first, see if we get anything good
     yt_client = gdata.youtube.service.YouTubeService()
     vid_data = yt_client.GetYouTubeVideoEntry(video_id=video_id)
-    title = vid_data.title.text
-    song_title, artist = get_from_echonest(title)
+
+    song_title, artist = get_from_echonest(vid_data.title.text)
 
     if song_title is None and artist is None:
         try:
@@ -63,6 +63,9 @@ def get_video_info(video_id):
         except apiclient_errors.HttpError, he:
             print 'HttpError: ', he
             pass
+
+    if song_title is None:
+        song_title = vid_data.title.text #final failsafe
 
     return song_title, artist
 
