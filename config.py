@@ -9,7 +9,7 @@ class Config(object):
 
     cfg = Config(ini_target)
     SQLALCHEMY_DATABASE_URI = cfg.get_section_option('alembic', 'sqlalchemy.url')
-    DEBUG = cfg.get_section_option('flask','debug') == 'True'
+    DEBUG = False
     TESTING = DEBUG
 
     GOOGLE_API_KEY = cfg.get_section_option('api_keys', 'google_api_key')

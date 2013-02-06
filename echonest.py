@@ -8,11 +8,21 @@ def get_from_echonest(title=None):
         raise Exception('ECHO_NEST_API_KEY variable cannot be None!')
 
     title_parts = title_splitter(title)
-    matches = song.search(title=title_parts[0], artist=title_parts[1])
-    # try both ways, because we have no idea how people will
-    # title the song in youtube
-    if not matches:
-        matches = song.search(title=title_parts[1], artist=title_parts[0])
+    if len(title_parts) == 0 or title_parts[1] is None:
+        title_parts = title.split(' ')
+
+    for (i, ignored) in enumerate(title_parts):
+        word1 = ' '.join(title_parts[0:i+1])
+        word2 = ' '.join(title_parts[i+1:])
+        matches = song.search(title=word1, artist=word2)
+        if matches:
+            break
+        matches = song.search(title=word2, artist=word1)
+        if matches:
+            break
+        #matches = song.search(title=title_parts[0], artist=title_parts[1])
+        #if not matches:
+        #    matches = song.search(title=title_parts[1], artist=title_parts[0])
 
     if not matches:
         return (None, None)
@@ -42,14 +52,10 @@ def title_scrubber(title):
     if by_idx != -1:
         return '%s - %s' % (title[:by_idx], title[by_idx+len(' by '):])
 
-    # match Etta James "At Last" (or "At Last" Etta James)
     match = re.match("(.{1,})?[\"|'](.{1,})[\"|'](.{1,})?", title)
     if match:
         if match.group(1):
             return "%s - %s" % (match.group(1), match.group(2))
         else:
             return "%s - %s" % (match.group(3), match.group(2))
-    # TODO
-    # how can i intelligenty switch 'At Last Etta James' with
-    # 'Etta James At Last'?
     return title
