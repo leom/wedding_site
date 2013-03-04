@@ -256,3 +256,6 @@ a.btn {
     background-color: #67896A;
     color: #fff;
 }
+.dataTables_paginate a {
+    padding: 0 4px 0px 4px;
+}
