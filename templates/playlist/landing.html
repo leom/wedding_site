@@ -47,7 +47,7 @@
             <div class="span10 ">
                 <h4>Our playlist so far</h4>
                 <p>Thank you to everyone that's submitted a song for our playlist! In case you're wondering what people want to hear, the full list is below.</p>
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="songPlaylist">
                     <thead>
                         <tr>
                             <th>Title</th>
@@ -67,6 +67,7 @@
 </div>
 {% endblock %}
 {% block js %}
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
 <script>
 $(function(){
     (function() {
@@ -126,6 +127,16 @@ $(function(){
         }
         return false;
     });
+
+    $('#songPlaylist').dataTable({
+        "bFilter": true,
+        "bLengthChange": false,
+        "bSort": true,
+        "bJQueryUI": true,
+        "bPaginate": true,
+        "sPaginationType": "full_numbers"
+    });
 });
+
 </script>
 {% endblock %}
